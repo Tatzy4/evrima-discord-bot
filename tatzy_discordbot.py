@@ -18,7 +18,7 @@ client = discord.Client(intents=intents)
 
 @tasks.loop(seconds=60)  # Update every 60 seconds
 async def update_status():
-    player_count = getPlayerCount() // 2
+    player_count = getPlayerCount()
     await client.change_presence(activity=discord.Game(name=f"Players: {player_count}")) # u can modify that by adding "Players: {player_count}/ur server max" and the players u can also change
 
 def getPlayerCount():
