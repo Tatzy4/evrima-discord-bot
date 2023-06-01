@@ -41,3 +41,4 @@ async def on_ready():
 client.run("bot token here")
 
 print("Tatzy")
+# What the hell is this?
