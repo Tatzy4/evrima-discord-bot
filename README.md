@@ -1,9 +1,17 @@
-# evrima-discord-bot
-Evrima TheIsle Server Bot
+<br/>
+<p align="center">
+  <a href="https://github.com/ShaanCoding/ReadME-Generator">
+    <img src="https://cdn.discordapp.com/attachments/1110258373779263678/1113824697952514148/kutas.png" alt="Logo" width="200" height="200">
+  </a>
 
-How to setup?
+  <h3 align="center">Evrima Discord Bot</h3>
 
-Set up here ur parameters
-ip = "99.99.99.99" #ur server ip here 
-port = 88888 #ur rcon port here
-password = b"RCONpassword" #ur rcon password here
+  <p align="center">
+    Enchance you server!
+    <br/>
+    Note This Project Is Still Uptading
+    <br/>
+    <br/>
+
+  </p>
+</p>
