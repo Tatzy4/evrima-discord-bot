@@ -39,3 +39,6 @@ async def on_ready():
     update_status.start()
 
 client.run("bot token here")
+
+print("Tatzy")
+# What the hell is this?
