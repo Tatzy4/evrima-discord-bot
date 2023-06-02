@@ -7,9 +7,9 @@
   <h3 align="center">Evrima Discord Bot</h3>
 
   <p align="center">
-    Enchance you server!
+    Enchance your server!
     <br/>
-    Note This Project Is Still Uptading
+    2.0 Version!
     <br/>
     <br/>
 
