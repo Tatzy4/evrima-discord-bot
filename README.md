@@ -1,6 +1,6 @@
 <br/>
 <p align="center">
-  <a href="https://github.com/ShaanCoding/ReadME-Generator">
+  <a href="https://tatzy.xyz/">
     <img src="https://cdn.discordapp.com/attachments/1110258373779263678/1113824697952514148/kutas.png" alt="Logo" width="200" height="200">
   </a>
 
@@ -25,3 +25,9 @@
 
 <img src="https://media.discordapp.net/attachments/1113199648958582815/1114165576705781770/image.png?width=486&height=169" alt="Logo">
 
+
+## Environment
+```css
+pip install discord.py
+pip install discord-ext-commands
+```
