@@ -15,3 +15,13 @@
 
   </p>
 </p>
+
+
+
+## Preview 
+
+<img src="https://cdn.discordapp.com/attachments/1113199648958582815/1114165535773569137/image.png" alt="Logo">
+
+
+<img src="https://media.discordapp.net/attachments/1113199648958582815/1114165576705781770/image.png?width=486&height=169" alt="Logo">
+
