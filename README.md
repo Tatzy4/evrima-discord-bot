@@ -7,7 +7,7 @@
   <h3 align="center">Evrima Discord Bot</h3>
 
   <p align="center">
-    <strong>Enchance your server!</strong>
+    <strong>Enhance your server!</strong>
     <br/>
     <h3 align="center">2.0 Version</h3>
     <br/>
@@ -16,18 +16,13 @@
   </p>
 </p>
 
-
-
 ## Preview 
 
 <img src="https://cdn.discordapp.com/attachments/1113199648958582815/1114165535773569137/image.png" alt="Logo">
 
-
 <img src="https://media.discordapp.net/attachments/1113199648958582815/1114165576705781770/image.png?width=486&height=169" alt="Logo">
-
 
 ## Environment
 ```css
 pip install discord.py
 pip install discord-ext-commands
-```
