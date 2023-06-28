@@ -4,57 +4,59 @@ import socket
 import sys
 import os
 import asyncio
+import configparser
 
-__author__ = "Tatzy"
-
-
-ip = "ip here" # like 127.10.100.137
-port = RCONPORT # like 8888
-password = b"RCONpasswordHERE" 
-timeout = 5
-packetMainLength = 2
-
-# Discord bot token
-TOKEN = 'bot token here'
-
-# Discord intents
-intents = discord.Intents.default()
-intents.typing = False
-intents.presences = False
+__author__ = "tatzy"
 
 # Discord client
-client = commands.Bot(command_prefix='!', intents=intents)
+client = commands.Bot(command_prefix='!')
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+ip = config.get('Server', 'ip')
+port = int(config.get('Server', 'port'))
+password = config.get('Server', 'password').encode()
+timeout = int(config.get('Server', 'timeout'))
+packetMainLength = int(config.get('Server', 'packetMainLength'))
+prefixText = config.get('Discord', 'prefixText')
+serverSlots = config.get('Discord', 'serverSlots')
+TOKEN = config.get('Discord', 'token')
 
 def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-async def playerList():
-    while True:
-        cls()
-        LIST = b'\x02@\x00'
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            # Connect to the TCP Socket
-            s.settimeout(timeout)
-            s.connect((ip, port))
-            s.send(LIST)
-            message = s.recv(1024)
-            message_str = message.decode()
-            print("Server returned: " + message_str)
+def playerList():
+    cls()
+    LIST = b'\x02@\x00'
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        # Connect to the TCP Socket
+        s.settimeout(timeout)
+        s.connect((ip, port))
+        s.send(LIST)
+        message = s.recv(10192)
+        message_str = message.decode()
+        print("Server returned: " + message_str)
 
-            # Extract player names from the message
-            player_names = [name.strip() for name in message_str.split(",") if name.strip()]
-            print("Player names: " + ", ".join(player_names))
+        # Extract player names from the message
+        player_names = []
+        count_next = False
+        for name in message_str.split(","):
+            name = name.strip()
+            if name and count_next:
+                player_names.append(name)
+            count_next = not count_next
 
-            # Count the number of players
-            player_count = len(player_names)
-            print("Number of players: " + str(player_count))
+        print("Player names: " + ", ".join(player_names))
 
-            # Update Discord bot status
-            update_status(player_count)
+        # Count the number of players
+        player_count = len(player_names)
+        print("Number of players: " + str(player_count))
 
-        await asyncio.sleep(60)  # Wait for 1 minute
+        # Update Discord bot status
+        update_status(player_count)
 
-def connect():
+async def connect_and_run():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         # Connect to the TCP Socket
         s.settimeout(timeout)
@@ -64,24 +66,24 @@ def connect():
         payload = b'\x01' + password + b'\x00'
         print("Sending: " + str(payload) + "\n")
         s.send(payload)
-        message = s.recv(1024)
+        message = s.recv(10192)
         if "Accepted" in message.decode():
             print(message)
         else:
             print(message)
             sys.exit()
-        playerListTask = asyncio.create_task(playerList())
-        asyncio.get_event_loop().run_until_complete(playerListTask)
+    
+    while True:
+        playerList()
+        await asyncio.sleep(60)  # Wait for 1 minute
 
 def update_status(player_count):
-    game = discord.Game(name=f"Gracze: {player_count}")
+    game = discord.Game(name=f"{prefixText} {player_count}/{serverSlots}")
     client.loop.create_task(client.change_presence(activity=game))
 
 @client.event
 async def on_ready():
-    print(f'Logged in as {client.user.name} ({client.user.id})')
-    print('------')
-    print('see errors? hit tatzy#2190')
-    await playerList()
+    print(f'if errors hit tatzy#2190')
+    client.loop.create_task(connect_and_run())
 
 client.run(TOKEN)
