@@ -10,6 +10,8 @@
     <strong>Enhance your server!</strong>
     <br/>
     <h3 align="center">2.0 Version</h3>
+    <h3 align="center">Added config.ini</h3>
+    <h3 align="center">Repaired code!</h3>
     <br/>
     <br/>
 
