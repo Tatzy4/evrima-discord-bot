@@ -27,4 +27,3 @@
 ## Environment
 ```css
 pip install discord.py
-pip install discord-ext-commands
