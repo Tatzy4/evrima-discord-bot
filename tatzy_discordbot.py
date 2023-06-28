@@ -8,8 +8,13 @@ import configparser
 
 __author__ = "tatzy"
 
+# Discord intents
+intents = discord.Intents.default()
+intents.typing = False
+intents.presences = False
+
 # Discord client
-client = commands.Bot(command_prefix='!')
+client = commands.Bot(command_prefix='!', intents=intents)
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -72,7 +77,7 @@ async def connect_and_run():
         else:
             print(message)
             sys.exit()
-    
+
     while True:
         playerList()
         await asyncio.sleep(60)  # Wait for 1 minute
