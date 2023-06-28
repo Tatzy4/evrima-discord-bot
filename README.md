@@ -24,6 +24,15 @@
 
 <img src="https://media.discordapp.net/attachments/1113199648958582815/1114165576705781770/image.png?width=486&height=169" alt="Logo">
 
+## Configuration
+
+Before running the bot, you need to set up the configuration. Follow the steps below:
+
+2. Open the `config.ini` file in a text editor.
+3. Replace the placeholder values with your own configuration settings. Make sure to provide your Discord bot token and other required information.
+4. Save the `config.ini` file.
+5. Run python script
+
 ## Environment
 ```css
 pip install discord.py
