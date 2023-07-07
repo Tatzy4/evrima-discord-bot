@@ -1,3 +1,4 @@
+
 <br/>
 <p align="center">
   <a href="https://tatzy.xyz/">
@@ -17,6 +18,12 @@
 
   </p>
 </p>
+
+<div align="center">
+  <a href="https://www.python.org/" target="_blank">
+    <img src="http://ForTheBadge.com/images/badges/made-with-python.svg" alt="Python Badge">
+  </a>
+</div>
 
 ## Preview 
 
