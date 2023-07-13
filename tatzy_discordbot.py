@@ -62,25 +62,33 @@ def playerList():
         update_status(player_count)
 
 async def connect_and_run():
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        # Connect to the TCP Socket
-        s.settimeout(timeout)
-        s.connect((ip, port))
-        print("TCP connection established with server")
-        # Form our login Packet
-        payload = b'\x01' + password + b'\x00'
-        print("Sending: " + str(payload) + "\n")
-        s.send(payload)
-        message = s.recv(10192)
-        if "Accepted" in message.decode():
-            print(message)
-        else:
-            print(message)
-            sys.exit()
-
     while True:
-        playerList()
-        await asyncio.sleep(60)  # Wait for 1 minute
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                # Connect to the TCP Socket
+                s.settimeout(timeout)
+                s.connect((ip, port))
+                print("TCP connection established with server")
+                # Form our login Packet
+                payload = b'\x01' + password + b'\x00'
+                print("Sending: " + str(payload) + "\n")
+                s.send(payload)
+                message = s.recv(10192)
+                if "Accepted" in message.decode():
+                    print(message)
+                else:
+                    print(message)
+                    sys.exit()
+
+            while True:
+                playerList()
+                await asyncio.sleep(60)  # Wait for 1 minute
+
+        except socket.error:
+            print("Connection lost. Reconnecting in 8 seconds...")
+            await client.change_presence(activity=discord.Game(name="Restartowanie"))
+            await asyncio.sleep(8)
+            continue
 
 def update_status(player_count):
     game = discord.Game(name=f"{prefixText} {player_count}/{serverSlots}")
